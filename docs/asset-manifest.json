@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/toki-1441.github.io/static/css/main.f855e6bc.css",
+    "main.js": "/toki-1441.github.io/static/js/main.d443e445.js",
+    "static/js/453.a6a97343.chunk.js": "/toki-1441.github.io/static/js/453.a6a97343.chunk.js",
+    "static/media/logo.svg": "/toki-1441.github.io/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/toki-1441.github.io/index.html",
+    "main.f855e6bc.css.map": "/toki-1441.github.io/static/css/main.f855e6bc.css.map",
+    "main.d443e445.js.map": "/toki-1441.github.io/static/js/main.d443e445.js.map",
+    "453.a6a97343.chunk.js.map": "/toki-1441.github.io/static/js/453.a6a97343.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.d443e445.js"
+  ]
+}
