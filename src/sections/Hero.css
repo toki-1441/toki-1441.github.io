@@ -1,0 +1,31 @@
+/* src/sections/Hero.css */
+@keyframes moveDots {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-200px); /* この値で動く距離が決まる */
+  }
+}
+
+.animated-dots {
+  /* ベースとなる一番暗い背景色 */
+  background-color: #100340;
+
+  /* radial-gradientでドットを生成し、複数レイヤーを重ねる */
+  background-image:
+    /* Layer 1: 小さく、明るいドット (一番速く動く) */
+    radial-gradient(circle at center, #6e698c 1px, transparent 1px),
+    /* Layer 2: 少し大きく、暗いドット (中間の速度で動く) */
+    radial-gradient(circle at center, #302559 2px, transparent 2px);
+
+  /* 各レイヤーのドットの間隔を指定 */
+  background-size: 
+    50px 50px,  /* Layer 1のドット間隔 */
+    100px 100px; /* Layer 2のドット間隔 */
+  
+  /* 各レイヤーに異なるアニメーション速度を適用し、パララックス効果を出す */
+  animation: 
+    moveDots 15s linear infinite, /* Layer 1のアニメーション */
+    moveDots 30s linear infinite; /* Layer 2のアニメーション */
+}
