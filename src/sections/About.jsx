@@ -90,7 +90,7 @@ const About = () => {
                   >
                     <Box
                       component="img"
-                      src="/src/images/toki.png"
+                      src="/toki.png"
                       alt="Profile Picture"
                       sx={{
                         width: 280,

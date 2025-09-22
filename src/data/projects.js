@@ -6,7 +6,7 @@ export const projectsData = [
     status: 'completed', // ← 追加
     title: 'Portfolio Website',
     description: 'A professional portfolio website built with React and Material-UI to showcase my skills and projects.',
-    image: '/src/images/portfolio.png',
+    image: '/portfolio.png',
     tags: ['React', 'MUI', 'Vite', 'GitHub Pages'],
     githubUrl: 'https://github.com/toki-1441/toki-1441.github.io.git',
     liveUrl: 'https://toki-1441.github.io/',
