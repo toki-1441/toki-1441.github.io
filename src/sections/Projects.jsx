@@ -2,16 +2,20 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardMedia, CardContent, CardActions, Button, Chip, Box } from '@mui/material';
 import { motion } from 'motion/react';
-import { projectsData } from '../data/projects.js'; // データを外部ファイルからインポート
+import { projectsData } from '../data/projects.js';
 
 const Projects = () => {
+  // データをステータス別に振り分ける
+  const completedProjects = projectsData.filter(p => p.status === 'completed');
+  const comingSoonProjects = projectsData.filter(p => p.status === 'coming_soon');
+
   // アニメーションのバリアントを定義
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // 子要素を0.2秒ずつ遅延させて表示
+        staggerChildren: 0.2,
       },
     },
   };
@@ -24,27 +28,16 @@ const Projects = () => {
   return (
     <Box id="projects" sx={{ py: 8 }}>
       <Container maxWidth="lg">
-        {/* タイトルにアニメーションを適用 */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={itemVariants}
-        >
+        {/* --- 完成したプロジェクトのセクション --- */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants}>
           <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 6 }}>
             Projects
           </Typography>
         </motion.div>
-
-        {/* Gridコンテナに親バリアントを適用 */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        
+        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <Grid container spacing={4}>
-            {projectsData.map((project, index) => (
+            {completedProjects.map((project, index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
                 <motion.div variants={itemVariants} style={{ height: '100%' }}>
                   <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: 'background.paper' }}>
@@ -78,6 +71,52 @@ const Projects = () => {
             ))}
           </Grid>
         </motion.div>
+
+        {/* --- Coming Soon セクション --- */}
+        {comingSoonProjects.length > 0 && (
+          <Box sx={{ mt: 10 }}>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants}>
+              <Typography variant="h5" component="h3" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 6 }}>
+                Future Goals
+              </Typography>
+            </motion.div>
+            
+            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once:true }}>
+              <Grid container spacing={4}>
+                {comingSoonProjects.map((project, index) => (
+                  <Grid item key={index} xs={12} sm={6} md={4}>
+                    <motion.div variants={itemVariants} style={{ height: '100%' }}>
+                      <Card sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        p: 3,
+                        bgcolor: 'transparent',
+                        border: '2px dashed',
+                        borderColor: 'grey.700',
+                        textAlign: 'center'
+                      }}>
+                        <Box>
+                          <Typography variant="h6" component="p" sx={{ fontWeight: 'bold' }}>
+                            {project.title}
+                          </Typography>
+                          <Typography variant="body2" sx={{ my: 2, color: 'text.secondary' }}>
+                            {project.description}
+                          </Typography>
+                          <Box>
+                            {project.tags.map(tag => <Chip key={tag} label={tag} variant="outlined" size="small" sx={{ mr: 0.5, mb: 0.5 }} />)}
+                          </Box>
+                          <Chip label="Coming Soon" color="secondary" size="small" sx={{ mt: 2 }} />
+                        </Box>
+                      </Card>
+                    </motion.div>
+                  </Grid>
+                ))}
+              </Grid>
+            </motion.div>
+          </Box>
+        )}
       </Container>
     </Box>
   );
